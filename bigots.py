@@ -5,7 +5,7 @@ import locale
 
 locale.setlocale(locale.LC_ALL, '')
 
-# 定数
+# constants
 X_SIZE = 40
 Y_SIZE = 23
 CRASH = "Ｘ"
@@ -13,7 +13,6 @@ SPACE = "　"
 
 
 class Entity:
-    """共通の表示機能を持つベースクラス"""
     def __init__(self, x: int, y: int, char: str, screen):
         self.x = x
         self.y = y
@@ -48,7 +47,6 @@ class Enemy(Entity):
         new_x = self.x + dx
         new_y = self.y + dy
 
-        # 岩との衝突判定
         for rock in rocks:
             if rock.alive and rock.x == new_x and rock.y == new_y:
                 rock.alive = False
@@ -57,7 +55,6 @@ class Enemy(Entity):
                 rock.clear()
                 return
 
-        # 他の敵との衝突判定
         for enemy in enemies:
             if enemy != self and enemy.alive and enemy.x == new_x and enemy.y == new_y:
                 self.alive = False
@@ -91,7 +88,7 @@ class Player(Entity):
 class Game:
     def __init__(self, screen):
         self.screen = screen
-        self.gamestat = 0  # 0: プレイ中, 1: 負け, 3: 勝ち
+        self.gamestat = 0  # 0: playing, 1: lose, 3: win
         self.player = Player(X_SIZE//2, Y_SIZE//2, screen)
         self.rocks = []
         self.enemies = []
@@ -126,14 +123,14 @@ class Game:
         self.rocks = []
         self.enemies = []
 
-        # 岩を配置
+        # place rocks
         for _ in range(120):
             rx, ry = random.randint(0, X_SIZE-1), random.randint(0, Y_SIZE-1)
             rock = Rock(rx, ry, self.screen)
             rock.draw()
             self.rocks.append(rock)
 
-        # 敵を配置（岩と重ならないように）
+        # place enemies
         for _ in range(12):
             while True:
                 ex, ey = random.randint(0, X_SIZE-1), random.randint(0, Y_SIZE-1)
