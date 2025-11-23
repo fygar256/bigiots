@@ -172,7 +172,7 @@ class game:
         stdscr.clear()      # 画面のクリア
 
         stdscr.addstr("Bigiots Ver 1.0\n")
-        stdscr.addstr("I created a word bigiot. bigiot means bigot and idiot.\n\n")
+        stdscr.addstr("I created a word bigiot. bigiot means bigot plus idiot and big IoT.\n\n")
         stdscr.addstr("Mission : kill all bigiots to survive!\n")
         stdscr.addstr("Ｏ -- bigiots, chase player step by step.\n")
         stdscr.addstr("＃ -- Rock, die bigiots and player when touched. \n")
